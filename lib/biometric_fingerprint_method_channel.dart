@@ -19,7 +19,6 @@ class MethodChannelBiometricFingerprint extends BiometricFingerprintPlatform {
 
   @override
   Future<BiometricType?> getBiometricType() async {
-    // final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
     return type;
   }
 

@@ -11,16 +11,17 @@ abstract class BiometricFingerprintPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static const MethodChannel _channel = const MethodChannel('biometric_fingerprint');
+  static const MethodChannel _channel =
+      const MethodChannel('biometric_fingerprint');
 
-  static BiometricFingerprintPlatform _instance = MethodChannelBiometricFingerprint();
+  static BiometricFingerprintPlatform _instance =
+      MethodChannelBiometricFingerprint();
 
   /// The default instance of [BiometricFingerprintPlatform] to use.
   ///
   /// Defaults to [MethodChannelBiometricFingerprint].
   static BiometricFingerprintPlatform get instance => _instance;
 
-  
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [BiometricFingerprintPlatform] when
   /// they register themselves.
@@ -33,10 +34,13 @@ abstract class BiometricFingerprintPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<BiometricType?> getBiometricType() {
-    throw UnimplementedError('getBiometricType() has not been implemented.');
+  Future<BiometricType?> getBiometricType() async {
+    return type;
   }
 
+  Future<bool> isBiometricEnabled() async {
+    return isEnabled;
+  }
 
   /// Get the [BiometricType] available on the device.
   ///
@@ -92,7 +96,6 @@ abstract class BiometricFingerprintPlatform extends PlatformInterface {
       return false;
     }
   }
-
 
   /// Encrypt message using biometric.
   static Future<BiometricResult> initAuthentication({
