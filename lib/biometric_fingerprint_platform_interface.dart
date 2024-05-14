@@ -54,7 +54,7 @@ abstract class BiometricFingerprintPlatform extends PlatformInterface {
   /// [BiometricType.UNSUPPORTED]
   static Future<BiometricType> get type async {
     try {
-      final String? type = await _channel.invokeMethod('type');
+      final String? type = await _channel.invokeMethod('initAutenticateType');
 
       if (kDebugMode) {
         print('Biometric type: $type');

@@ -34,7 +34,7 @@ class MethodChannelBiometricFingerprint extends BiometricFingerprintPlatform {
   /// [BiometricType.UNSUPPORTED]
   static Future<BiometricType> get type async {
     try {
-      final String? type = await _channel.invokeMethod('type');
+      final String? type = await _channel.invokeMethod('initAutenticateType');
 
       print('Biometric type: $type');
 
