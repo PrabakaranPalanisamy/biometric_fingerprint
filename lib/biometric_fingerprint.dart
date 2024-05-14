@@ -29,8 +29,8 @@ class BiometricFingerprint {
     return BiometricFingerprintPlatform.isEnabled;
   }
 
-  Future<BiometricType> getBiometricType() {
-    return BiometricFingerprintPlatform.type;
+  Future<BiometricType?> getBiometricType() async{
+    return await BiometricFingerprintPlatform.instance.getBiometricType();
   }
 
   Future<BiometricResult> initAuthentication({

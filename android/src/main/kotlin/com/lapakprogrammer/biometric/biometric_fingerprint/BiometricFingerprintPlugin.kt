@@ -34,6 +34,7 @@ class BiometricFingerprintPlugin: FlutterPlugin, MethodCallHandler, ActivityAwar
   private lateinit var biometricManager: BiometricManager
   private lateinit var biometricPrompt: BiometricPrompt
   private lateinit var promptInfo: BiometricPrompt.PromptInfo
+//  private lateinit var keyguardManager: KeyguardManager
 
   companion object {
     private const val TAG = "BiometricFingerprintPlugin"
@@ -52,6 +53,7 @@ class BiometricFingerprintPlugin: FlutterPlugin, MethodCallHandler, ActivityAwar
     cryptoManager = CryptoManager()
     biometricManager = BiometricManager.from(context)
     biometricHelper = BiometricFingerprintHelper(context)
+//    keyguardManager = context.getSystemService(KEYGUARD_SERVICE) as KeyguardManager
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -105,7 +107,34 @@ class BiometricFingerprintPlugin: FlutterPlugin, MethodCallHandler, ActivityAwar
       else -> result.success("UNSUPPORTED")
     }
   }
-
+//
+//  private fun canAuthenticateWithBiometrics(): Boolean {
+//    if (biometricManager == null) return false
+//    return (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)
+//            === BiometricManager.BIOMETRIC_SUCCESS)
+//  }
+//
+//  private fun hasBiometricHardware(): Boolean {
+//    if (biometricManager == null) return false
+//    return (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)
+//            !== BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE)
+//  }
+//
+//  @NonNull
+//  fun isDeviceSupported(): Boolean {
+//    return isDeviceSecure() || canAuthenticateWithBiometrics()
+//  }
+//
+//  @NonNull
+//  fun deviceCanSupportBiometrics(): Boolean {
+//    return hasBiometricHardware()
+//  }
+//
+//  @VisibleForTesting
+//  fun isDeviceSecure(): Boolean {
+//    if (keyguardManager == null) return false
+//    return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && keyguardManager.isDeviceSecure())
+//  }
 
   @SuppressLint("LongLogTag")
   private fun initAuthenticate(@NonNull call: MethodCall, @NonNull result: Result) {

@@ -33,6 +33,10 @@ abstract class BiometricFingerprintPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
+  Future<BiometricType?> getBiometricType() {
+    throw UnimplementedError('getBiometricType() has not been implemented.');
+  }
+
 
   /// Get the [BiometricType] available on the device.
   ///
